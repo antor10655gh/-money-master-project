@@ -34,3 +34,23 @@ input[type=text] {
     word-break: break-word;
     border: 0;
 }
+
+.save-button {
+    background: #28abbd;
+    border-radius: 0px;
+    box-shadow: #28abbd 0 10px 20px -10px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    opacity: 1;
+    outline: 0 solid transparent;
+    padding: 8px 38px;
+    user-select: none;
+    touch-action: manipulation;
+    width: fit-content;
+    word-break: break-word;
+    border: 0;
+}
