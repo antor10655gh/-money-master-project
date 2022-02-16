@@ -54,3 +54,23 @@ input[type=text] {
     word-break: break-word;
     border: 0;
 }
+
+#requires-sms {
+    display: none;
+    color: red;
+}
+
+#requires-sms1 {
+    display: none;
+    color: red;
+}
+
+#requires-sms2 {
+    display: none;
+    color: red;
+}
+
+#requires-sms3 {
+    display: none;
+    color: red;
+}
