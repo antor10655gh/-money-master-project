@@ -30,16 +30,18 @@ document.getElementById('calculate-button').addEventListener('click', function()
         document.getElementById('requires-sms3').style.display = 'block';
     }
     else{
+        // calculate total expenses
         const totalExpenses = document.getElementById('total-expenses');
         const calculateExpenses = parseFloat(calculateFoodAmount) + parseFloat(calculateRentAmount) + parseFloat(calculateClothAmount);
         totalExpenses.innerText = calculateExpenses;
         const incomeInput = document.getElementById('income');
         const incomeAmount = incomeInput.value;
-        incomeInput.value = '';
+        
         if(incomeAmount == ''){
             document.getElementById('requires-sms').style.display = 'block';
         }
         else{
+            // calculate balance
             const balance = document.getElementById('balance');
             const balanceAmount = parseFloat(incomeAmount) - calculateExpenses;
             if(incomeAmount < calculateExpenses){
@@ -53,4 +55,20 @@ document.getElementById('calculate-button').addEventListener('click', function()
 
     }
 
+})
+
+document.getElementById('savings-button').addEventListener('click', function(){
+    const incomeBalanceValue = document.getElementById('income');
+    const incomeValue = incomeBalanceValue.value;
+    const savingsInput = document.getElementById('savings');
+    const savingsAmount = savingsInput.value;
+    const savingsBalance = document.getElementById('savings-amount');
+    savingsBalance.innerText = parseFloat(incomeValue) * (parseFloat(savingsAmount)/100);
+    incomeBalanceValue.value = '';
+    savingsInput.value = '';
+    const balanceValue = document.getElementById('balance').innerText;
+    const remainingSavings = document.getElementById('remaining-savings-amount');
+    const remainingValue = remainingSavings.innerText;
+    const remainingSavingsValue = parseFloat(balanceValue) - parseFloat(savingsBalance.innerText);
+    remainingSavings.innerText = remainingSavingsValue; 
 })
