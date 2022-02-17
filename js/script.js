@@ -1,9 +1,12 @@
+// findout the value of cost
 function calculate(exp){
     const expenses = document.getElementById(exp + '-cost');
     const expensesAmount = expenses.value;
     expenses.value = '';
     return expensesAmount;
 }
+
+// calculate all expenses 
 document.getElementById('calculate-button').addEventListener('click', function(){
     const calculateFoodAmount = calculate('food');
     const calculateRentAmount = calculate('rent');
@@ -64,6 +67,7 @@ document.getElementById('calculate-button').addEventListener('click', function()
 
 })
 
+// savings amount and remaining balance code is here
 document.getElementById('savings-button').addEventListener('click', function(){
     const balance = document.getElementById('balance');
     const incomeBalanceValue = document.getElementById('income');
