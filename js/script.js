@@ -9,37 +9,44 @@ document.getElementById('calculate-button').addEventListener('click', function()
     const calculateRentAmount = calculate('rent');
     const calculateClothAmount = calculate('cloth');
 
-    if(calculateFoodAmount == '' && calculateRentAmount == '' && calculateClothAmount == ''){
+    const incomeInput = document.getElementById('income');
+    const incomeAmount = incomeInput.value;
+
+    if(incomeAmount == '' && calculateFoodAmount == '' && calculateRentAmount == '' && calculateClothAmount == ''){
+        document.getElementById('requires-sms').style.display = 'block';
         document.getElementById('requires-sms1').style.display = 'block';
         document.getElementById('requires-sms2').style.display = 'block';
         document.getElementById('requires-sms3').style.display = 'block';
     }
-    else if(calculateFoodAmount != '' && calculateRentAmount == '' && calculateClothAmount == ''){
+    if(incomeAmount != '' && calculateFoodAmount == '' && calculateRentAmount == '' && calculateClothAmount == ''){
+        document.getElementById('requires-sms').style.display = 'none';
+        document.getElementById('requires-sms1').style.display = 'block';
+        document.getElementById('requires-sms2').style.display = 'block';
+        document.getElementById('requires-sms3').style.display = 'block';
+    }
+    else if(incomeAmount == '' && calculateFoodAmount != '' && calculateRentAmount == '' && calculateClothAmount == ''){
+        document.getElementById('requires-sms').style.display = 'block';
         document.getElementById('requires-sms1').style.display = 'none';
         document.getElementById('requires-sms2').style.display = 'block';
         document.getElementById('requires-sms3').style.display = 'block';
     }
-    else if(calculateFoodAmount == '' && calculateRentAmount == ''){
+    
+    else if(incomeAmount == '' && calculateFoodAmount == '' && calculateRentAmount == '' && calculateClothAmount != ''){
+        document.getElementById('requires-sms').style.display = 'block';
         document.getElementById('requires-sms1').style.display = 'block';
         document.getElementById('requires-sms2').style.display = 'block';
         document.getElementById('requires-sms3').style.display = 'none';
-    }
-    else if(calculateFoodAmount == '' && calculateClothAmount == ''){
-        document.getElementById('requires-sms1').style.display = 'block';
-        document.getElementById('requires-sms2').style.display = 'none';
-        document.getElementById('requires-sms3').style.display = 'block';
     }
     else{
         // calculate total expenses
         const totalExpenses = document.getElementById('total-expenses');
         const calculateExpenses = parseFloat(calculateFoodAmount) + parseFloat(calculateRentAmount) + parseFloat(calculateClothAmount);
         totalExpenses.innerText = calculateExpenses;
-        const incomeInput = document.getElementById('income');
-        const incomeAmount = incomeInput.value;
+        
         
         if(incomeAmount == ''){
             document.getElementById('requires-sms').style.display = 'block';
-        }
+        } 
         else{
             // calculate balance
             const balance = document.getElementById('balance');
@@ -62,13 +69,21 @@ document.getElementById('savings-button').addEventListener('click', function(){
     const incomeValue = incomeBalanceValue.value;
     const savingsInput = document.getElementById('savings');
     const savingsAmount = savingsInput.value;
-    const savingsBalance = document.getElementById('savings-amount');
-    savingsBalance.innerText = parseFloat(incomeValue) * (parseFloat(savingsAmount)/100);
-    incomeBalanceValue.value = '';
-    savingsInput.value = '';
-    const balanceValue = document.getElementById('balance').innerText;
-    const remainingSavings = document.getElementById('remaining-savings-amount');
-    const remainingValue = remainingSavings.innerText;
-    const remainingSavingsValue = parseFloat(balanceValue) - parseFloat(savingsBalance.innerText);
-    remainingSavings.innerText = remainingSavingsValue; 
+    if(savingsAmount == ''){
+        document.getElementById('requires-sms4').style.display = 'block';
+    }
+    else if(incomeValue == ''){
+        alert('Please fillup the all previous required field')
+    }
+    else{
+        const savingsBalance = document.getElementById('savings-amount');
+        savingsBalance.innerText = parseFloat(incomeValue) * (parseFloat(savingsAmount)/100);
+        incomeBalanceValue.value = '';
+        savingsInput.value = '';
+        const balanceValue = document.getElementById('balance').innerText;
+        const remainingSavings = document.getElementById('remaining-savings-amount');
+        const remainingValue = remainingSavings.innerText;
+        const remainingSavingsValue = parseFloat(balanceValue) - parseFloat(savingsBalance.innerText);
+        remainingSavings.innerText = remainingSavingsValue; 
+    }
 })
