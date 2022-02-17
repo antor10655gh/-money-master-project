@@ -52,7 +52,7 @@ document.getElementById('calculate-button').addEventListener('click', function()
             const balance = document.getElementById('balance');
             const balanceAmount = parseFloat(incomeAmount) - calculateExpenses;
             if(incomeAmount < calculateExpenses){
-                alert('Balance in not enough');
+                alert('Income in not enough');
             }
             else{
                 balance.innerText = balanceAmount;
@@ -65,6 +65,7 @@ document.getElementById('calculate-button').addEventListener('click', function()
 })
 
 document.getElementById('savings-button').addEventListener('click', function(){
+    const balance = document.getElementById('balance');
     const incomeBalanceValue = document.getElementById('income');
     const incomeValue = incomeBalanceValue.value;
     const savingsInput = document.getElementById('savings');
@@ -77,13 +78,19 @@ document.getElementById('savings-button').addEventListener('click', function(){
     }
     else{
         const savingsBalance = document.getElementById('savings-amount');
-        savingsBalance.innerText = parseFloat(incomeValue) * (parseFloat(savingsAmount)/100);
-        incomeBalanceValue.value = '';
-        savingsInput.value = '';
-        const balanceValue = document.getElementById('balance').innerText;
-        const remainingSavings = document.getElementById('remaining-savings-amount');
-        const remainingValue = remainingSavings.innerText;
-        const remainingSavingsValue = parseFloat(balanceValue) - parseFloat(savingsBalance.innerText);
-        remainingSavings.innerText = remainingSavingsValue; 
+        const savingsBalanceCalculate = parseFloat(incomeValue) * (parseFloat(savingsAmount)/100);
+        if(savingsBalanceCalculate > balance.innerText){
+            alert('Low Balance');
+        }
+        else{
+            savingsBalance.innerText = savingsBalanceCalculate;
+            incomeBalanceValue.value = '';
+            savingsInput.value = '';
+            const balanceValue = document.getElementById('balance').innerText;
+            const remainingSavings = document.getElementById('remaining-savings-amount');
+            const remainingValue = remainingSavings.innerText;
+            const remainingSavingsValue = parseFloat(balanceValue) - parseFloat(savingsBalance.innerText);
+            remainingSavings.innerText = remainingSavingsValue; 
+        }
     }
 })
